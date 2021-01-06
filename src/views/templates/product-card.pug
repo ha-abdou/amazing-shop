@@ -1,0 +1,9 @@
+
+div(class="card")
+  img(src=product.img, class="card-img-top", alt="todo")
+  div(class="card-body")
+    h5(class="card-title")=`${product.label} - ${product.price}€`
+      if product.discount
+        span(class="badge badge-danger")=`-${product.discount.amount}%`
+    p(class="card-text")=product.shortDescription
+    a(class="btn btn-primary", href=`/product/${product.id}`)='Voir'
