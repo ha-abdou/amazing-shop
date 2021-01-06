@@ -1,0 +1,20 @@
+for product in cart
+  p(id=product.id)
+    = product.label + " "
+    button(
+      type="button",
+      class="btn btn-outline-danger",
+      onclick=`decreaseAmount("${product.id}")`
+    ) -
+    span(id=`amount-${product.id}`)= " - " + product.amount + " - "
+    button(
+      type="button", 
+      class="btn btn-outline-primary",
+      onclick=`increaseAmount("${product.id}")`
+    ) +
+    = " "
+    button(
+      type="button",
+      class="btn btn-danger",
+      onclick=`removeFromCart("${product.id}", "${product.label}", "${product.id}")`
+    ) remove from cart

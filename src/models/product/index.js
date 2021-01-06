@@ -8,11 +8,7 @@ class Product {
    */
   static getAll (selector) {
     return new Promise((res, rej) => {
-      if (selector) {
-        res(productMock.map(p => _.pick(p, selector)))
-        return
-      }
-      res(productMock)
+      res(select(productMock, selector))
     })
   }
 
@@ -27,6 +23,26 @@ class Product {
       product ? res(product) : rej(new Error('Not found'))
     })
   }
+
+  /**
+   * 
+   * @param {Array<String>} ids 
+   * @param {Array<String>=} selector 
+   */
+  static getById (ids, selector) {
+    return new Promise((res, rej) => {
+      const products = productMock.filter(p => ids.includes(p.id))
+
+      res(select(products, selector))
+    })
+  }
+}
+
+function select (products, selector) {
+  if (selector) {
+    return (products.map(p => _.pick(p, selector)))
+  }
+  return (products)
 }
 
 module.exports = Product

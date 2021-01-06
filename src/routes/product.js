@@ -10,7 +10,6 @@ router.get('/:id', async (req, res) => {
     const cart = req.cookies.cart ? JSON.parse(req.cookies.cart) : null
     let inCart = cart && !!cart.find(p => p.id === product.id)
   
-    console.log(inCart)
     res.render('screens/product-details', {
       title: 'Amazing Shop | ' + product.label,
       navBar,

@@ -4,23 +4,52 @@ let addRemoveBTN = null;
   addRemoveBTN = document.getElementById('add-remove-from-cart')
 })();
 
-function addToCart(id) {
+function increaseAmount (id) {
+  const cart = getCart()
+  const product = cart.find(p => p.id === id)
+
+  product.amount++
+  updateAmount(id, product.amount)
+  setCart(cart)
+}
+
+function decreaseAmount (id) {
+  const cart = getCart()
+  const product = cart.find(p => p.id === id)
+
+  if (product.amount > 0) {
+    product.amount--
+    updateAmount(id, product.amount)
+  }
+  setCart(cart)
+}
+
+function updateAmount (id, amount) {
+  document.getElementById("amount-" + id).innerHTML = ` - ${amount} - `
+}
+
+function addToCart(id, label) {
   const cart = getCart()
 
   updateAddRemoveBTN("remove from cart", "btn btn-danger")
-  addRemoveBTN.onclick = removeFromCart.bind(this, id)
+  addRemoveBTN.onclick = removeFromCart.bind(this, id, label)
   cart.push({
     id,
-    amount: 0
+    label,
+    amount: 1
   })
   setCart(cart)
 }
 
-function removeFromCart (id) {
+function removeFromCart (id, label, toRemove) {
   const cart = getCart()
 
-  updateAddRemoveBTN("add to cart", "btn btn-primary")
-  addRemoveBTN.onclick = addToCart.bind(this, id)
+  if (toRemove) {
+    document.getElementById(toRemove).remove()
+  } else {
+    updateAddRemoveBTN("add to cart", "btn btn-primary")
+    addRemoveBTN.onclick = addToCart.bind(this, id, label)
+  }
   setCart(cart.filter((p) => p.id !== id))
 }
 
