@@ -8,7 +8,7 @@ class Product {
    */
   static getAll (selector) {
     if (selector) {
-      return_.pick(productMock, selector);
+      return productMock.map(p => _.pick(p, selector));
     }
     return productMock
   }

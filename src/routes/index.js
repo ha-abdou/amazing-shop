@@ -19,7 +19,7 @@ const navBar = [
 router.get('/', function(req, res) {
   res.render('index', {
     title: 'Amazing Shop | Home',
-    products: Product.getAll(),
+    products: Product.getAll(['img', "label", 'price', 'discount', 'shortDescription', 'id']),
     navBar,
     activeNavBarTab: "products"
   });
