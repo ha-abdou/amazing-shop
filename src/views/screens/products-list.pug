@@ -1,2 +1,4 @@
-each product in products
-  include ../templates/product.pug
+div(class="row")
+  div(class="card-deck")
+    each product in products
+      include ../templates/product-card.pug
