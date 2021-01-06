@@ -8,7 +8,7 @@ router.get('/:id', async (req, res) => {
   try {
     const product = await Product.getOneById(req.params.id)
     const cart = req.cookies.cart ? JSON.parse(req.cookies.cart) : null
-    let inCart = cart && !!cart.find(p => p.id === product.id)
+    const inCart = cart && !!cart.find(p => p.id === product.id)
   
     res.render('screens/product-details', {
       title: 'Amazing Shop | ' + product.label,
