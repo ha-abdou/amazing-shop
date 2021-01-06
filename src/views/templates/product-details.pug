@@ -1,0 +1,17 @@
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      img(src=product.img, class="card-img", alt="...")
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        h5(class="card-title")=product.label
+        p(class="card-text")
+          =product.price + '€ '
+          if product.discount
+            span(class="badge badge-danger")=`${product.discount.type} -${product.discount.amount}%`
+        p(class="card-text")=product.description
+      </div>
+    </div>
+  </div>
+</div>

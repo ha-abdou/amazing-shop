@@ -1,4 +1,8 @@
-div(class="row")
+extends ../layout
+
+block content
+  h1= 'TODO filter'
   div(class="card-deck")
     each product in products
       include ../templates/product-card.pug
+  h1= 'TODO pagination'
