@@ -1,4 +1,4 @@
 ul(class="nav nav-tabs")
   each item in navBar
     li(class="nav-item")
-      a(class=`nav-link ${item.active ? 'active' : ''}`, href=`/${item.path}`)=item.name
+      a(class=`nav-link ${item.key === activeNavBarTab ? 'active' : ''}`, href=`/${item.path}`)=item.name

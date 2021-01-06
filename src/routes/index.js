@@ -5,20 +5,23 @@ const router = express.Router();
 
 const navBar = [
   {
+    key: 'products',
     path: '',
-    name: 'Products',
-    active: true
+    name: 'Products'
   },
   {
+    key: 'cart',
     path: 'cart',
     name: 'Cart'
   },
 ]
+
 router.get('/', function(req, res) {
   res.render('index', {
     title: 'Amazing Shop | Home',
     products: Product.getAll(),
-    navBar
+    navBar,
+    activeNavBarTab: "products"
   });
 });
 
