@@ -7,10 +7,14 @@
       <div class="card-body">
         h5(class="card-title")=product.label
         p(class="card-text")
-          =product.price + '€ '
+          = product.price + '€ '
           if product.discount
-            span(class="badge badge-danger")=`${product.discount.type} -${product.discount.amount}%`
+            span(class="badge badge-danger") !{product.discount.type} -#{product.discount.amount}%
         p(class="card-text")=product.description
+        if inCart
+          button(id="add-remove-from-cart", type="button", class="btn btn-danger", onclick=`removeFromCart("${product.id}")`) remove from cart
+        else
+          button(id="add-remove-from-cart",type="button", class="btn btn-primary", onclick=`addToCart("${product.id}")`) add to cart
       </div>
     </div>
   </div>

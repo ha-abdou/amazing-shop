@@ -7,11 +7,15 @@ const router = express.Router();
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.getOneById(req.params.id)
-
+    const cart = req.cookies.cart ? JSON.parse(req.cookies.cart) : null
+    let inCart = cart && !!cart.find(p => p.id === product.id)
+  
+    console.log(inCart)
     res.render('screens/product-details', {
       title: 'Amazing Shop | ' + product.label,
       navBar,
-      product
+      product,
+      inCart
     });
   } catch (e) {
     res.render('error', {
